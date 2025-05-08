@@ -2,11 +2,11 @@ SUPSI 2025
 Corso d’interaction design, CV428.01  
 Docenti: A. Gysin, G. Profeta  
 
-Elaborato 1: Me, Myself & AI  
+Elaborato 2: Estensione .ttf 
 
 # Titolo progetto
-Autore: Hans Manon  
-[Titolo progetto](https://ixd-supsi.github.io/2023/esempi/mp_hands/es6/1_landmarks)
+Autore: Tommaso Stanga 
+[TTF](https://tommifunky.github.io/TTF/)
 
 
 ## Introduzione e tema
@@ -36,8 +36,6 @@ Il sito si apre con una landing che si ritrae dopo il click, lasciando spazio al
 La pagina è molto ampia e si può esplorare liberamente usando tre modalità: normale, con righelli, oppure drag.
 Le sezioni sono distribuite su un canva esteso e raggiungibili anche dal menu in alto a destra.
 Alcuni elementi sono interattivi, come la curva di Bézier che segue il mouse e i box cliccabili che aprono descrizioni.
-
-[<img src="doc/cards.gif" width="500" alt="Magic trick">]()
 
 
 ## Tecnologia usata
