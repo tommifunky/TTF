@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/righelli.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <svg style="position: absolute; visibility: hidden; pointer-events: none;">
+        <defs>
+            <filter id="pixelate">
+                <feFlood x="1" y="1" height="2" width="2"/>
+                <feComposite width="5" height="5"/>
+                <feTile result="a"/>
+                <feComposite in="SourceGraphic" in2="a" operator="in"/>
+                <feMorphology operator="dilate" radius="1"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="landing-page-new" id="landing">
+        <div class="title-container">
+            <div class="letter-box" data-letter="s"></div>
+            <div class="letter-box" data-letter="t"></div>
+            <div class="letter-box" data-letter="a"></div>
+            <div class="letter-box" data-letter="r"></div>
+            <div class="letter-box" data-letter="t"></div>
+            <div class="letter-box" data-letter="."></div>
+            <div class="letter-box" data-letter="t"></div>
+            <div class="letter-box" data-letter="t"></div>
+            <div class="letter-box" data-letter="f"></div>
+        </div>
+        <div class="landing-box">
+            <p class="paragrafo">Sapevi che ogni lettera che leggi<br>è un'equazione matematica? <br><br>Scopri come TrueType ha trasformato la geometria in caratteri leggibili su ogni dispositivo.</p>
+            <button id="entra-btn">→ Entra nel sito</button>
+        </div>
+    </div>
+
+    <div class="righello-corner"></div>
+    <div class="righello-top" id="righello-top"></div>
+    <div class="righello-left" id="righello-left"></div>
+
+    <div id="toolbar">
+        <button id="normal-btn" class="toolbar-btn selected"><span>➤</span></button>
+        <button id="crosshair-btn" class="toolbar-btn">✛</button>
+        <button id="drag-btn" class="toolbar-btn">✥</button>
+    </div>
+
+    <div id="mouse-coords"></div>
+
+    <div class="crosshair-horizontal" id="crosshair-horizontal"></div>
+    <div class="crosshair-vertical" id="crosshair-vertical"></div>
+
+    <div class="contenuto">
+        <nav class="menu" id="menu">
+            <div class="menu-title" id="menu-title">Capitoli &#8617;</div>
+            <div class="menu-content" id="menu-content">
+                <a href="#intro">1. Introduzione</a>
+                <a href="#caratteristiche">2. Caratteristiche</a>
+                <a href="#funzionamento">3. Funzionamento</a>
+                <a href="#rendering">4. Rendering e hinting</a>
+                <a href="#vantaggi">5. Vantaggi e svantaggi</a>
+                <a href="#confronto">6. Confronto</a>
+                <a href="#creare">7. Creare e modificare</a>
+                <a href="#uso">8. Uso pratico</a>
+                <a href="#risorse">9. Risorse</a>
+            </div>
+        </nav>
+
+        <section id="intro" class="modulo" style="top:30px; left:80px; width:500px;">
+            <h2>1. Introduzione</h2>
+            <p class="paragrafo">TrueType è un formato di font vettoriale sviluppato da Apple negli anni '80, progettato per offrire una migliore qualità nella visualizzazione dei caratteri sui primi schermi digitali.<br><br>
+            Con l'adozione da parte di Microsoft nei primi anni '90, TrueType è diventato uno standard universale nei sistemi operativi moderni, sostituendo i font bitmap precedenti.<br><br>
+            Grazie alla rappresentazione basata su curve matematiche, TrueType consente un rendering nitido e scalabile, indipendente dalla risoluzione dello schermo o dalla dimensione di stampa.<br><br>
+            Ancora oggi, TrueType è ampiamente utilizzato su Windows, macOS, Linux e dispositivi mobili, oltre ad essere supportato nei webfont moderni.</p>
+        </section>
+
+
+
+        <section id="caratteristiche" class="modulo" style="top:345px; left:80px; width:600px;">
+            <h2>2. Caratteristiche</h2>
+            <div class="paragrafo">
+                <div class="paragrafo" style="margin-bottom:20px;">
+                    TrueType è un formato che combina versatilità tecnica, precisione geometrica e ampia compatibilità. Le sue caratteristiche fondamentali hanno permesso a questo formato di resistere nel tempo, rimanendo ancora oggi uno standard diffuso.
+                </div>
+                <div style="border:1px solid black; padding:10px; font-family: monospace;">
+                    <b>Elementi chiave</b><br><br>
+                    <div class="feature-box" onclick="handleFeatureClick(this)" data-feature="compatibility" style="border:1px dashed black; padding:8px; margin-bottom:6px; cursor: pointer;">
+                        Compatibilità multipiattaforma
+                    </div>
+                    <div class="feature-box" onclick="handleFeatureClick(this)" data-feature="vector" style="border:1px dashed black; padding:8px; margin-bottom:6px; cursor: pointer;">
+                        Formato vettoriale scalabile
+                    </div>
+                    <div class="feature-box" onclick="handleFeatureClick(this)" data-feature="modular" style="border:1px dashed black; padding:8px; margin-bottom:6px; cursor: pointer;">
+                        Architettura modulare
+                    </div>
+                    <div class="feature-box" onclick="handleFeatureClick(this)" data-feature="standard" style="border:1px dashed black; padding:8px; margin-bottom:6px; cursor: pointer;">
+                        Standard aperto e documentato
+                    </div>
+                    <div class="feature-box" onclick="handleFeatureClick(this)" data-feature="unicode" style="border:1px dashed black; padding:8px; margin-bottom:6px; cursor: pointer;">
+                        Estensione Unicode
+                    </div>
+                    <div class="feature-box" onclick="handleFeatureClick(this)" data-feature="reliability" style="border:1px dashed black; padding:8px; cursor: pointer;">
+                        Affidabilità nel tempo
+                    </div>
+                </div>
+        </section>
+
+        <section id="funzionamento" class="modulo" style="top:345px; left:1984px; width:450px;">
+            <h2>3. Funzionamento</h2>
+            <div class="paragrafo" style="margin-bottom:20px;">
+                Un file <b>.ttf</b> è organizzato in più <b>tabelle specializzate</b>.  
+                Ogni tabella contiene una parte diversa del font: disegno, mappatura, metriche e compatibilità.
+            </div>
+            <div style="border:1px solid black; padding:10px; font-family: monospace;">
+                <b>Struttura interna</b><br><br>
+                <div style="border:1px dashed black; padding:8px; margin-bottom:6px;">
+                    <b>glyf</b> → Geometria dei glifi
+                </div>
+                <div style="border:1px dashed black; padding:8px; margin-bottom:6px;">
+                    <b>cmap</b> → Mappa codici Unicode → glifi
+                </div>
+                <div style="border:1px dashed black; padding:8px; margin-bottom:6px;">
+                    <b>head</b> → Dati generali (versione, autore)
+                </div>
+                <div style="border:1px dashed black; padding:8px; margin-bottom:6px;">
+                    <b>hhea / hmtx</b> → Metriche di altezza e spaziatura
+                </div>
+                <div style="border:1px dashed black; padding:8px; margin-bottom:6px;">
+                    <b>name</b> → Nome del font e copyright
+                </div>
+                <div style="border:1px dashed black; padding:8px; margin-bottom:6px;">
+                    <b>OS/2</b> → Compatibilità Windows
+                </div>
+                <div style="border:1px dashed black; padding:8px;">
+                    <b>post</b> → Supporto PostScript
+                </div>
+            </div>
+        </section>
+
+        <section id="funzionamento-bezier" class="modulo" style="top:345px; left:2486px; width:600px;">
+          <h2>Curva di Bézier nel disegno dei glifi</h2>
+          <div class="paragrafo" style="margin-bottom:10px;">
+              Ogni carattere TrueType è disegnato usando <b>curve quadratiche di Bézier</b>.
+          </div>
+          <canvas id="bezierCanvas" width="500" height="500" style="border:1px solid black; display:block; margin: 0 auto;"></canvas>
+          <div style="font-family: monospace; font-size: 12px; text-align: center; margin-top: 5px;">
+              (Muovi il mouse sopra per deformare la curva)
+          </div>
+      </section>
+
+        <section id="rendering" class="modulo" style="top:982px; left:2486px; width:600px;">
+            <h2>4. Rendering e hinting</h2>
+            <div class="paragrafo" style="margin-bottom:20px;">
+                I font TrueType sono disegnati con <b>curve matematiche vettoriale</b>.
+                Ma gli schermi funzionano con <b>pixel quadrati</b>.<br><br>
+                Per visualizzare correttamente i caratteri, avviene la <b>rasterizzazione</b>:
+                <ul style="font-family: monospace; font-size: 12px; margin-left:20px;">
+                    <li>➔ Le curve vengono adattate sulla griglia dei pixel.</li>
+                    <li>➔ I contorni diventano linee di pixel accesi o spenti.</li>
+                </ul>
+                <br>
+                Per migliorare la qualità:
+                <ul style="font-family: monospace; font-size: 12px; margin-left:20px;">
+                    <li>➔ Il <b>hinting</b> guida il computer su come "agganciare" i tratti ai pixel corretti.</li>
+                    <li>➔ L'<b>antialiasing</b> ammorbidisce i bordi usando pixel grigi intermedi.</li>
+                </ul>
+            </div>
+            <div style="border:1px dashed black; padding:10px; font-family: monospace;">
+                <b>In breve:</b><br><br>
+                - Rasterizzazione = da curve a pixel<br>
+                - Hinting = miglioramento leggibilità pixel<br>
+                - Antialiasing = bordi più morbidi
+            </div>
+        </section>
+
+        <section id="vantaggi" class="modulo" style="top:982px; left:3138px; width:600px;">
+            <h2>5. Vantaggi e svantaggi</h2>
+            <div class="paragrafo" style="margin-bottom:20px;">
+                TrueType è stato uno standard per decenni grazie ai suoi vantaggi, <br>ma presenta anche alcune limitazioni.
+            </div>
+            <div style="display: flex; flex-direction: row; gap:20px; font-family: monospace;">
+                <div style="flex:1; border:1px solid black; padding:10px;">
+                    <b>Vantaggi</b><br><br>
+                    ➔ Alta qualità a qualsiasi dimensione<br>
+                    ➔ Scalabilità vettoriale<br>
+                    ➔ Compatibilità multipiattaforma<br>
+                    ➔ File relativamente leggeri
+                </div>
+                <div style="flex:1; border:1px solid black; padding:10px;">
+                    <b>Svantaggi</b><br><br>
+                    ➔ Hinting complesso da gestire<br>
+                    ➔ Meno avanzato di OpenType<br>
+                    ➔ Non supporta variazioni dinamiche come Variable Fonts
+                </div>
+            </div>
+        </section>
+
+        <section id="confronto" class="modulo" style="top:1250px; left:3138px; width:600px;">
+            <h2>6. Confronto</h2>
+            <div class="paragrafo" style="margin-bottom:20px;">
+                Come si colloca TrueType rispetto agli altri principali formati moderni?
+            </div>
+            <div style="font-family: monospace; font-size: 12px;">
+                <table style="border-collapse: collapse; width:100%;">
+                    <tr>
+                        <td style="border:1px solid black; padding:5px;"><b>Formato</b></td>
+                        <td style="border:1px solid black; padding:5px;"><b>Caratteristiche</b></td>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid black; padding:5px;">TrueType (.ttf)</td>
+                        <td style="border:1px solid black; padding:5px;">Scalabile, semplice, ampiamente supportato</td>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid black; padding:5px;">OpenType (.otf)</td>
+                        <td style="border:1px solid black; padding:5px;">TrueType + funzionalità tipografiche avanzate</td>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid black; padding:5px;">WOFF / WOFF2</td>
+                        <td style="border:1px solid black; padding:5px;">Ottimizzati per il web, compressi</td>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid black; padding:5px;">Variable Fonts</td>
+                        <td style="border:1px solid black; padding:5px;">Un solo file → molte varianti dinamiche</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="creare" class="modulo" style="top:1250px; left:3790px; width:520px;">
+            <h2>7. Creare e modificare</h2>
+            <div class="paragrafo" style="margin-bottom:20px;">
+                Creare un font TrueType richiede alcuni passaggi fondamentali.
+            </div>
+            <div style="font-family: monospace;">
+                ➔ Disegna i glifi vettoriali (es. in FontForge, Glyphs, FontLab)<br><br>
+                ➔ Definisci le metriche: spaziatura, altezza, ecc.<br><br>
+                ➔ Aggiungi hinting per migliorare la leggibilità<br><br>
+                ➔ Esporta in formato .ttf
+            </div>
+        </section>
+
+        <section id="uso" class="modulo" style="top:1480px; left:3790px; width:400px;">
+            <h2>8. Uso pratico</h2>
+            <div class="paragrafo" style="margin-bottom:20px;">
+                Come usare i font TrueType nei tuoi progetti.
+            </div>
+            <div style="border:1px solid black; padding:10px; font-family: monospace;">
+                <b>Installazione</b><br><br>
+                ➔ Windows: tasto destro > Installa<br>
+                ➔ macOS: doppio click > Installa Font<br>
+                ➔ Linux: copia il file nella cartella .fonts
+            </div>
+            <div style="border:1px solid black; padding:10px; margin-top:20px; font-family: monospace;">
+                <b>Uso in CSS</b><br><br>
+                <code>
+                @font-face {<br>
+                &nbsp;&nbsp;font-family: 'MioFont';<br>
+                &nbsp;&nbsp;src: url('miofont.ttf') format('truetype');<br>
+                }<br><br>
+                body {<br>
+                &nbsp;&nbsp;font-family: 'MioFont', sans-serif;<br>
+                }
+                </code>
+            </div>
+        </section>
+
+        <section id="risorse" class="modulo" style="top:1480px; left:4242px; width:420px;">
+            <h2>9. Risorse</h2>
+            <div style="font-family: monospace; font-size: 12px;">
+                ➔ Documentazione TrueType ufficiale: <a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/" target="_blank">Apple</a><br><br>
+                ➔ FontForge - Editor di font open source: <a href="https://fontforge.org" target="_blank">fontforge.org</a><br><br>
+                ➔ Specifiche OpenType: <a href="https://learn.microsoft.com/en-us/typography/opentype/spec/" target="_blank">Microsoft Docs</a><br><br>
+                ➔ Webfont Compressione e WOFF2: <a href="https://web.dev/woff2/" target="_blank">web.dev</a><br><br>
+                ➔ Wikipedia - TrueType: <a href="https://en.wikipedia.org/wiki/TrueType" target="_blank">Wikipedia (EN)</a><br><br>
+                ➔ Wikipedia - Font Rasterization: <a href="https://en.wikipedia.org/wiki/Font_rasterization" target="_blank">Wikipedia (EN)</a><br><br>
+                ➔ Articolo su Curve di Bézier: <a href="https://pomax.github.io/bezierinfo/" target="_blank">A Primer on Bézier Curves</a><br><br>
+                ➔ ChatGPT (OpenAI) - Supporto nella stesura del codice.<br><br>
+            </div>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const featureContent = {
+        compatibility: {
+            title: "Compatibilità multipiattaforma",
+            content: "Un font TrueType può essere usato senza modifiche su Windows, macOS, Linux, sistemi mobili e stampanti. È pienamente supportato anche dai browser web, ed è compatibile con strumenti di design, sviluppo e impaginazione professionale."
+        },
+        vector: {
+            title: "Formato vettoriale scalabile",
+            content: "I caratteri sono definiti attraverso formule matematiche che permettono di scalare il font a qualsiasi dimensione mantenendo la massima qualità, senza perdita di definizione."
+        },
+        modular: {
+            title: "Architettura modulare",
+            content: "La struttura interna del font è organizzata in tabelle separate e modulari, permettendo una gestione efficiente dei dati e facilitando l'aggiunta di funzionalità."
+        },
+        standard: {
+            title: "Standard aperto e documentato",
+            content: "Le specifiche tecniche sono pubbliche e ben documentate, permettendo a sviluppatori e designer di creare strumenti compatibili e di modificare i font esistenti."
+        },
+        unicode: {
+            title: "Estensione Unicode",
+            content: "Supporto completo per i caratteri Unicode, permettendo di rappresentare simboli e alfabeti di diverse lingue e culture in un singolo font."
+        },
+        reliability: {
+            title: "Affidabilità nel tempo",
+            content: "Il formato ha dimostrato la sua solidità in decenni di utilizzo, garantendo stabilità e retrocompatibilità attraverso diverse generazioni di sistemi."
+        }
+    };
+
+    let currentBox = null;
+
+    function createFeatureBox(title, content) {
+    // Remove any existing box first
+    if (currentBox) {
+        currentBox.remove();
+    }
+
+    const box = document.createElement('div');
+    box.className = 'feature-detail-box';
+    box.style.cssText = `
+        position: absolute;
+        top: 345px;
+        left: 732px;
+        border: 1px solid black;
+        padding: 20px;
+        background: white;
+        font-family: monospace;
+        width: 400px;
+        z-index: 1000;
+    `;
+
+    box.innerHTML = `
+        <h3 style="margin-top: 0; margin-bottom: 20px;">${title}</h3>
+        <p style="margin-bottom: 0px;">${content}</p>
+    `;
+
+    document.body.appendChild(box);
+    currentBox = box;
+
+    // Single event listener for clicking outside
+    document.addEventListener('click', function closeBox(e) {
+        if (!box.contains(e.target) && !e.target.classList.contains('feature-box')) {
+            box.remove();
+            currentBox = null;
+            // Remove active class from all feature boxes
+            document.querySelectorAll('.feature-box').forEach(box => {
+                box.classList.remove('active');
+            });
+            document.removeEventListener('click', closeBox);
+        }
+    });
+
+    // Handle clicking outside the box
+    document.addEventListener('click', function closeBox(e) {
+        if (!box.contains(e.target) && !e.target.classList.contains('feature-box')) {
+            box.remove();
+            currentBox = null;
+            // Remove active class from all feature boxes
+            document.querySelectorAll('.feature-box').forEach(box => {
+                box.classList.remove('active');
+            });
+            document.removeEventListener('click', closeBox);
+        }
+    });
+
+    // Chiudi box quando si clicca fuori
+    document.addEventListener('click', function closeBox(e) {
+        if (!box.contains(e.target) && !e.target.classList.contains('feature-box')) {
+            box.remove();
+            currentBox = null;
+            // Remove active class from all feature boxes
+            document.querySelectorAll('.feature-box').forEach(box => {
+                box.classList.remove('active');
+            });
+            document.removeEventListener('click', closeBox);
+        }
+    });
+}
+
+// Modifica l'event listener per i feature box
+document.querySelectorAll('.feature-box').forEach(box => {
+    box.addEventListener('click', (e) => {
+        // Remove active class from all boxes
+        document.querySelectorAll('.feature-box').forEach(b => {
+            if (b !== e.target) {
+                b.classList.remove('active');
+            }
+        });
+        // Toggle active class on clicked box
+        e.target.classList.toggle('active');
+        
+        const feature = e.target.dataset.feature;
+        if (featureContent[feature]) {
+            createFeatureBox(featureContent[feature].title, featureContent[feature].content);
+        }
+        e.stopPropagation();
+    });
+});
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    <script>
+      // Canvas curva Bézier
+      document.addEventListener('DOMContentLoaded', function() {
+          const canvas = document.getElementById('bezierCanvas');
+          const ctx = canvas.getContext('2d');
+          let controlX = 250;
+          let controlY = 100;
+
+          function drawCurve() {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+              // Punti base
+              ctx.fillStyle = 'black';
+              ctx.beginPath();
+              ctx.arc(100, 450, 6, 0, 2 * Math.PI); // Punto iniziale
+              ctx.fill();
+              ctx.beginPath();
+              ctx.arc(400, 450, 6, 0, 2 * Math.PI); // Punto finale
+              ctx.fill();
+              ctx.beginPath();
+              ctx.arc(controlX, controlY, 6, 0, 2 * Math.PI); // Punto di controllo
+              ctx.fill();
+
+              // Linee guida
+              ctx.strokeStyle = 'lightgray';
+              ctx.beginPath();
+              ctx.moveTo(100, 450);
+              ctx.lineTo(controlX, controlY);
+              ctx.lineTo(400, 450);
+              ctx.stroke();
+
+              // Curva vera
+              ctx.strokeStyle = 'black';
+              ctx.beginPath();
+              ctx.moveTo(100, 450);
+              ctx.quadraticCurveTo(controlX, controlY, 400, 450);
+              ctx.stroke();
+          }
+
+          canvas.addEventListener('mousemove', (e) => {
+              const rect = canvas.getBoundingClientRect();
+              controlX = e.clientX - rect.left;
+              controlY = e.clientY - rect.top;
+              drawCurve();
+          });
+
+          drawCurve();
+      });
+  </script>
+
+  <script src="assets/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+/* righelli.css */
+.righello-corner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: #000000;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.righello-top {
+  position: fixed;
+  top: 0;
+  left: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #000000;
+  display: flex;
+  z-index: 100;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.tacca:first-child {
+  margin-left: -4.5px;
+}
+
+.righello-left {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  width: 20px;
+  border-right: 1px solid #000000;
+  background: #ffffff;
+  z-index: 100;
+}
+
+.tacca {
+  width: 10px;
+  height: 100%;
+  position: relative;
+}
+
+.tacca::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: #000000;
+  height: 6px;
+}
+
+.tacca.media::before { height: 10px; }
+.tacca.grande::before {
+  height: 20px;
+  background: #000000;
+}
+
+.tacca[data-num]::after {
+  content: attr(data-num);
+  position: absolute;
+  bottom: 6px;
+  left: 7px;
+  font-size: 10px;
+  color: #000000;
+  letter-spacing: 0.1em;
+  font-family: monospace;
+}
+
+.tacca-vert {
+  height: 10px;
+  width: 100%;
+  position: relative;
+}
+
+.tacca-vert::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1px;
+  width: 6px;
+  background: #000000;
+}
+
+.tacca-vert.media::before { width: 10px; }
+.tacca-vert.grande::before {
+  width: 20px;
+  background: #000000;
+}
+
+.label-vert {
+  position: absolute;
+  top: 3px;
+  right: 9px;
+  font-size: 10px;
+  color: #000000;
+  text-align: right;
+  line-height: 1.1;
+  font-family: monospace;
+}
+
+.crosshair-horizontal,
+.crosshair-vertical {
+  position: fixed;
+  background: rgba(0, 0, 0, 1);
+  pointer-events: none;
+  z-index: 102;
+}
+
+.crosshair-horizontal {
+  height: 1px;
+  width: 100vw;
+  left: 0;
+}
+
+.crosshair-vertical {
+  width: 1px;
+  height: 100vh;
+  top: 0;
+}
+
+#mouse-coords {
+  position: fixed;
+  bottom: 9px;
+  right: 8px;
+  font-family: monospace;
+  font-size: 12px;
+  color: black;
+  background: white;
+  padding: 2px 6px;
+  border: 1px solid black;
+  z-index: 110;
+  pointer-events: none;
+}
+
+#toolbar {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  background: white;
+  border: 1px solid black;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 120;
+  font-family: monospace;
+}
+
+.toolbar-btn {
+  background: white;
+  border: 1px solid black;
+  width: 29px;
+  height: 29px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  font-family: monospace;
+  line-height: 1;
+}
+
+.toolbar-btn span {
+  display: inline-block;
+  transform: rotate(-90deg);
+}
+
+.toolbar-btn.selected {
+  background: black;
+  color: white;
+}

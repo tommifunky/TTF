@@ -10,50 +10,132 @@ Autore: Hans Manon
 
 
 ## Introduzione e tema
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Congue eu consequat ac felis donec. Nisi est sit amet facilisis magna etiam tempor. Nisl nisi scelerisque eu ultrices vitae. Id aliquet lectus proin nibh nisl. Urna nec tincidunt praesent semper feugiat nibh. Imperdiet dui accumsan sit amet nulla facilisi morbi. Aliquet enim tortor at auctor urna nunc. Id cursus metus aliquam eleifend mi. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat in. Odio morbi quis commodo odio aenean sed. Turpis cursus in hac habitasse. Sed enim ut sem viverra aliquet eget sit. Iaculis at erat pellentesque adipiscing commodo. Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Ipsum faucibus vitae aliquet nec ullamcorper sit. Tempus quam pellentesque nec nam aliquam sem et tortor. Turpis egestas sed tempus urna et pharetra pharetra massa. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel.
+La mia interfaccia web è progettata per spiegare in modo interattivo e visivo il formato di font TrueType (.ttf).
+L’obiettivo è quello di raccontare in modo chiaro e coinvolgente come funziona questo formato, illustrandone la struttura interna, il funzionamento delle curve Bézier, il rendering, l'hinting e molto altro.
+
+Il progetto mescola contenuti tecnici e grafica sperimentale per rendere l’argomento accessibile anche a chi non ha mai approfondito il tema, ma è curioso di sapere cosa c’è “dietro” ogni carattere tipografico.
 
 
 ## Riferimenti progettuali
-Dolor sit amet consectetur adipiscing elit duis tristique. Sociis natoque penatibus et magnis dis parturient montes nascetur. Est sit amet facilisis magna. Tellus rutrum tellus pellentesque eu. Dictum sit amet justo donec enim. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Sed faucibus turpis in eu mi bibendum neque egestas congue. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Dolor magna eget est lorem ipsum dolor. Sit amet mattis vulputate enim nulla. Elit pellentesque habitant morbi tristique senectus et. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa.
+Dal punto di vista visivo, il progetto prende ispirazione da:
 
+	1. Glyphs, FontForge e vecchie interfacce da font editor
 
-https://user-images.githubusercontent.com/6561331/236182302-68a6bd12-7b83-4d19-b83e-c9b7db795881.mp4
+	2. L’estetica tecnica di QuarkXPress e software di impaginazione anni '90
+
+	3. La tipografia monospace delle macchine da scrivere, il linguaggio del codice e dei prompt testuali
+
+	4. I pixel e i righelli come simboli del rapporto tra analogico e digitale
+
+Il sito prende ispirazione dai software per disegnare font, dove ogni lettera può essere osservata, scomposta e ricostruita.
+Non ho seguito un sistema grafico preciso, ma ho costruito tutto intorno a un'idea visiva coerente: una griglia infinita che dà libertà di movimento e un’estetica tecnica che richiama le regole geometriche dietro ogni carattere.
 
 
 ## Design dell’interfaccia e modalità di interazione
-Facilisis magna etiam tempor orci eu. Felis donec et odio pellentesque diam volutpat commodo. Dis parturient montes nascetur ridiculus mus mauris vitae. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Accumsan sit amet nulla facilisi. Ultricies leo integer malesuada nunc vel risus. Est lorem ipsum dolor sit. Ultrices neque ornare aenean euismod elementum nisi. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Placerat duis ultricies lacus sed turpis tincidunt id aliquet. Arcu dictum varius duis at consectetur lorem donec massa sapien. Pellentesque habitant morbi tristique senectus. Turpis massa sed elementum tempus egestas sed sed risus pretium. Eros donec ac odio tempor orci. Pellentesque id nibh tortor id aliquet lectus. Risus feugiat in ante metus dictum at. Quam pellentesque nec nam aliquam sem et tortor consequat id. Feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Sit amet dictum sit amet justo donec enim.
+Il sito si apre con una landing che si ritrae dopo il click, lasciando spazio alla navigazione.
+La pagina è molto ampia e si può esplorare liberamente usando tre modalità: normale, con righelli, oppure drag.
+Le sezioni sono distribuite su un canva esteso e raggiungibili anche dal menu in alto a destra.
+Alcuni elementi sono interattivi, come la curva di Bézier che segue il mouse e i box cliccabili che aprono descrizioni.
 
 [<img src="doc/cards.gif" width="500" alt="Magic trick">]()
 
 
 ## Tecnologia usata
-Nunc consequat interdum varius sit amet mattis vulputate. Vehicula ipsum a arcu cursus vitae congue. Odio ut sem nulla pharetra. Accumsan lacus vel facilisis volutpat est velit egestas dui id. Quisque egestas diam in arcu cursus. Eget nulla facilisi etiam dignissim diam. Aenean sed adipiscing diam donec adipiscing tristique. Porttitor massa id neque aliquam. Sem viverra aliquet eget sit amet tellus cras. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Nunc aliquet bibendum enim facilisis gravida neque convallis a. Lacus sed turpis tincidunt id aliquet risus feugiat.
+Il progetto fa uso delle seguenti tecnologie:
+
+HTML – per la struttura e l’organizzazione delle sezioni nella pagina.
+
+CSS – per lo stile visivo, le animazioni, i righelli, i moduli e il layout su griglia.
+
+JavaScript – per gestire le interazioni:
+- animazione della landing page
+- cambio modalità del cursore
+- creazione dinamica dei righelli
+- navigazione tra sezioni usando la Scroll API
+- tracciamento del mouse e aggiornamento coordinate tramite DOM API
+- disegno e animazione di una curva tramite Canvas API
 
 
 ```JavaScript
-const image = new Image();
-image.onload = () => {
-	gl.bindTexture(gl.TEXTURE_2D, texture);
-	gl.texImage2D(
-		gl.TEXTURE_2D,
-		level,
-		internalFormat,
-		srcFormat,
-		srcType,
-		image
-	);
-	if (isPowerOf2(image.width) && isPowerOf2(image.height)) {
-		gl.generateMipmap(gl.TEXTURE_2D);
-	} else {
-		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-	}
-};
-image.src = url;
+// Al click su "entra", la landing si ritrae e attiva l'interfaccia principale
+entraBtn.addEventListener("click", () => {
+  landingPage.classList.add('shrink-landing');
+  setTimeout(() => {
+    righelloCorner.style.display = 'block';
+  }, 1000);
+});
+
+
+// Crea righelli orizzontali e verticali con tacche e numeri
+function generaRighelli() {
+  const righelloTop = document.getElementById("righello-top");
+  const righelloLeft = document.getElementById("righello-left");
+  righelloTop.innerHTML = '';
+  righelloLeft.innerHTML = '';
+
+  const pageWidth = Math.max(document.body.scrollWidth, document.documentElement.scrollWidth);
+  const taccheOrizz = Math.ceil((pageWidth + 30) / 10);
+
+  for (let i = 0; i <= taccheOrizz * 10; i += 10) {
+    const div = document.createElement("div");
+    div.className = "tacca";
+    if (i === 0 || i % 100 === 0) {
+      div.classList.add("grande");
+      div.setAttribute("data-num", i);
+    } else if (i % 50 === 0) {
+      div.classList.add("media");
+    }
+    righelloTop.appendChild(div);
+  }
+
+  // Verticale simile (con etichette ruotate)
+}
+
+
+// Cambia il comportamento del cursore
+function setCursorDrag() {
+  removeSelected();
+  dragBtn.classList.add("selected");
+  document.body.style.cursor = "move";
+  crosshairH.style.display = "none";
+  crosshairV.style.display = "none";
+  addDragEvents();    // attiva il trascinamento
+  disableScroll();    // disattiva lo scroll
+}
+
+
+// Quando si clicca su una feature, si apre un box con spiegazione
+window.handleFeatureClick = function(element) {
+  const featureId = element.dataset.feature;
+
+  if (element.classList.contains('active')) {
+    element.classList.remove('active');
+    if (currentBox) currentBox.remove();
+    currentBox = null;
+    return;
+  }
+
+  document.querySelectorAll('.feature-box').forEach(box => box.classList.remove('active'));
+  if (currentBox) currentBox.remove();
+
+  element.classList.add('active');
+
+  if (featureContent[featureId]) {
+    createFeatureBox(featureContent[featureId].title, featureContent[featureId].content);
+  }
+}
 ```
 
-## Target e contesto d’uso
-Sed enim ut sem viverra aliquet eget sit. Iaculis at erat pellentesque adipiscing commodo. Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Ipsum faucibus vitae aliquet nec ullamcorper sit. Tempus quam pellentesque nec nam aliquam sem et tortor. Turpis egestas sed tempus urna et pharetra pharetra massa. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel.
 
-[<img src="doc/munari.jpg" width="300" alt="Supplemento al dizionario italiano">]()
+## Target e contesto d’uso
+Il sito è pensato per studenti, appassionati di tipografia e persone curiose di capire meglio come funziona un font .ttf, anche senza una formazione tecnica. Può essere usato in contesti didattici, workshop o come progetto divulgativo per spiegare in modo visivo e interattivo il funzionamento dei font TrueType.
+
+
+## Media di progetto
+<img src="img/landing.png" width="500" alt="Schermata iniziale" />
+
+<img src="img/stuttura.png" width="500" alt="Struttura modulare con righelli e sezioni" />
+
+
+## Interazione live nel canvas
+<img src="img/curva_bezier.png" width="500" alt="Interazione con la curva di Bézier" />
