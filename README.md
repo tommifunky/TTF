@@ -4,8 +4,8 @@ Docenti: A. Gysin, G. Profeta
 
 Elaborato 2: Estensione .ttf 
 
-# Titolo progetto
-Autore: Tommaso Stanga 
+# TrueType
+Autore: Tommaso Stanga
 [TTF](https://tommifunky.github.io/TTF/)
 
 
